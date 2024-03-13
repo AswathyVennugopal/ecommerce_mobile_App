@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display WATCH</title>
+</head>
+<body>
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">DISPLAY TABLE</h4>
+        <div class="table-responsive pt-3">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Name</th>
+                <th>Specification</th>
+                <th>Rating</th>
+                <th>MRP Price</th>
+                <th>Deal Price</th>
+                <th>Delivery status</th>
+                <th>Image</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for d1 in data1 %}
+              <tr>
+                <td>{{d1.Category}}</td>
+                <td>{{d1.Name}}</td>
+                <td>{{d1.Specification}}</td>
+                <td>{{d1.Rating}}</td>
+                <td>{{d1.MRP_Price}}</td>
+                <td>{{d1.Deal_Price}}</td>
+                <td>{{d1.Delivery_Status}}</td>
+                <!-- {% if d1.Image %} -->
+                <td>
+                <img src="{{d1.Image.url}}" width="100px" height="100px">
+                </td>
+
+
+<!-- {% endif %} -->
+
+                <td>
+                  <a href="{% url 'edit_product' productid=d1.id %}">
+                    <button class="btn btn-primary mr-2">Edit</button>
+                  </a>
+                  <a href="{% url 'delete_product' productid=d1.id %}">
+                    <button class="btn btn-primary mr-2">Delete</button>
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+{% endblock %}

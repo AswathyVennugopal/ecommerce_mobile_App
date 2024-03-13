@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Product Page</title>
+</head>
+<body>
+<div class="card">
+                <div class="card-body">
+                  <h1 class="card-title">EDIT PRODUCT</h1>
+                   <form class="forms-sample" method="post" action="{% url 'update_product' productid=data1.id %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+
+                     <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Select Category</label>
+                          <div class="col-sm-9">
+                            <select class="form-control" name="category">
+                                <option>{{data1.Category}}</option>
+                              {% for i in cat %}
+                                <option>{{i.Name}}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputName1">Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name" value="{{data1.Name}}">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Specification</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Specification" name="specification">{{data1.Specification}}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputRating">Rating</label>
+                      <input type="text" class="form-control" id="exampleInputRating" placeholder="Rating" name="rating" value="{{data1.Rating}}">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputMRP">MRP Price</label>
+                      <input type="number" class="form-control" id="exampleInputMRP" placeholder="MRP Price" name="mrp_price" value="{{data1.MRP_Price}}">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputDeal">Deal Price</label>
+                      <input type="number" class="form-control" id="exampleInputDeal" placeholder="Deal Price" name="deal_price" value="{{data1.Deal_Price}}">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputDelivery">Delivery Status</label>
+                      <input type="text" class="form-control" id="exampleInputDelivery" placeholder="Delivery Status" name="delivery_status" value="{{data1.Delivery_Status}}">
+                    </div>
+
+                       <div class="form-group">
+                           {% if i.Image %}
+                        <img src="{{data1.Image.url}}" width="100px" height="100px"><br><br>
+                           {% endif %}
+                        <input type="file" placeholder="Image" name="image"><br><br>
+                        </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+</body>
+</html>
+{% endblock %}

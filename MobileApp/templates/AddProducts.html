@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD PAGE</title>
+</head>
+<body>
+<div class="card">
+                <div class="card-body">
+                  <h1 class="card-title">PRODUCT</h1>
+                   <form class="forms-sample" method="post" action="{% url 'product_save_data' %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Select Category</label>
+                          <div class="col-sm-9">
+                            <select class="form-control" name="category">
+                              <option>Select Category</option>
+                              {% for i in cat %}
+                                <option>{{i.Name}}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputName1">Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Specification</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Specification" name="specification"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputRating">Rating</label>
+                      <input type="text" class="form-control" id="exampleInputRating" placeholder="Rating" name="rating">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputMRP">MRP Price</label>
+                      <input type="number" class="form-control" id="exampleInputMRP" placeholder="MRP Price" name="mrp_price">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputDeal">Deal Price</label>
+                      <input type="number" class="form-control" id="exampleInputDeal" placeholder="Deal Price" name="deal_price">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputDelivery">Delivery Status</label>
+                      <input type="text" class="form-control" id="exampleInputDelivery" placeholder="Delivery Status" name="delivery_status">
+                    </div>
+
+                       <div class="form-group">
+                        <label>Image Upload</label>
+                        <input type="file" class="file-upload-default"><br>
+                        <input type="file" placeholder="Image" name="image">
+                      </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+</body>
+</html>
+{% endblock %}

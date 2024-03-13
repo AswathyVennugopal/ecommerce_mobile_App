@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit WATCH TABLE</title>
+</head>
+<body>
+<div class="card">
+                <div class="card-body">
+                  <h1 class="card-title">EDIT WATCH</h1>
+                   <form class="forms-sample" method="post" action="{% url 'update_category' categoryid=data.id %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputName1">Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name" value="{{data.Name}}">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Description</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Description" name="description">{{data.Description}}</textarea>
+                    </div>
+
+                        <div class="form-group">
+                        <img src="{{data.Image.url}}" width="100px" height="100px"><br><br>
+                        <input type="file" placeholder="Profile Image" name="image"><br><br>
+                        </div>
+
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+</body>
+</html>
+{% endblock %}

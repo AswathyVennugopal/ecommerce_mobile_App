@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile CATEGORY Page</title>
+</head>
+<body>
+<div class="card">
+                <div class="card-body">
+                  <h1 class="card-title">CATEGORY</h1>
+                   <form class="forms-sample" method="post" action="{% url 'category_save_data' %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputName1">Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Description</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Description" name="description"></textarea>
+                    </div>
+
+                       <div class="form-group">
+                        <label>Image Upload</label>
+                        <input type="file" class="file-upload-default"><br>
+                        <input type="file" placeholder="Profile Image" name="image">
+                      </div>
+
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+   {% for i in messages %}
+        {% if i.tags == 'success' %}
+        <script>
+            swal('{{i}}','','success')
+        </script>
+        {% elif i.tags == 'warning' %}
+        <script>
+            swal('{{i}}','','warning')
+        </script>
+        {% elif i.tags == 'error' %}
+        <script>
+            swal('{{i}}','','error')
+        </script>
+         {% else %}
+        <script>
+            swal('{{i}}','','info')
+        </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+</body>
+</html>
+{% endblock %}
